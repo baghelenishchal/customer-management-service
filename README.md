@@ -42,3 +42,140 @@ Application Versioning: Appends /v1 to API endpoints for versioning.
 
 # Run the Application:
 `mvn spring-boot:run`
+
+# Create Customer (problem 1 part a)
+
+URL: /api/v1/customers
+Method: POST
+Request Body: 
+[{
+    "customer": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "customerId": "12345",
+        "age": 30,
+        "spendingLimit": 450000.001244,
+        "mobileNumber": "1234567890",
+        "address": [{
+            "type": "Home",
+            "address1": "123 Street",
+            "address2": "Apt 1",
+            "city": "City",
+            "state": "State",
+            "zipCode": "12345"
+        }]
+    }
+}]
+Response: 201 Created
+
+# Retrieve Customers (problem 1 part b)
+
+URL: /api/v1/customers
+Method: GET
+Query Parameters: firstName, city, state
+Response:
+json
+Copy code
+[
+    {
+        "firstName": "John",
+        "lastName": "Doe",
+        "customerId": "12345",
+        "age": 30,
+        "spendingLimit": 450000.001244,
+        "mobileNumber": "1234567890",
+        "address": [{
+            "type": "Home",
+            "address1": "123 Street",
+            "address2": "Apt 1",
+            "city": "City",
+            "state": "State",
+            "zipCode": "12345"
+        }]
+    }
+]
+
+# Compare Customer Lists (problem 2)
+
+URL: /api/v1/customers/compare
+Method: POST
+Request Body:
+{
+    "listA": [
+        {
+            "firstName": "John",
+            "lastName": "Doe",
+            "customerId": "12345",
+            "age": 30,
+            "spendingLimit": 450000.001244,
+            "mobileNumber": "1234567890",
+            "address": []
+        },
+        {
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "customerId": "67890",
+            "age": 25,
+            "spendingLimit": 250000.001244,
+            "mobileNumber": "0987654321",
+            "address": []
+        }
+    ],
+    "listB": [
+        {
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "customerId": "67890",
+            "age": 25,
+            "spendingLimit": 250000.001244,
+            "mobileNumber": "0987654321",
+            "address": []
+        },
+        {
+            "firstName": "Alice",
+            "lastName": "Smith",
+            "customerId": "11111",
+            "age": 28,
+            "spendingLimit": 150000.001244,
+            "mobileNumber": "5555555555",
+            "address": []
+        }
+    ]
+}
+
+Response:
+{
+    "onlyInA": [
+        {
+            "firstName": "John",
+            "lastName": "Doe",
+            "customerId": "12345",
+            "age": 30,
+            "spendingLimit": 450000.001244,
+            "mobileNumber": "1234567890",
+            "address": []
+        }
+    ],
+    "onlyInB": [
+        {
+            "firstName": "Alice",
+            "lastName": "Smith",
+            "customerId": "11111",
+            "age": 28,
+            "spendingLimit": 150000.001244,
+            "mobileNumber": "5555555555",
+            "address": []
+        }
+    ],
+    "inBoth": [
+        {
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "customerId": "67890",
+            "age": 25,
+            "spendingLimit": 250000.001244,
+            "mobileNumber": "0987654321",
+            "address": []
+        }
+    ]
+}
