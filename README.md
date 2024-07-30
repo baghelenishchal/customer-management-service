@@ -45,8 +45,10 @@ Application Versioning: Appends /v1 to API endpoints for versioning.
 
 # Create Customer (problem 1 part a)
 
-URL: /api/v1/customers
-Method: POST
+URL: `/api/v1/customers`
+
+Method:` POST`
+
 Request Body: 
 [{
     "customer": {
@@ -66,16 +68,15 @@ Request Body:
         }]
     }
 }]
-Response: 201 Created
+Response: `201 Created`
 
 # Retrieve Customers (problem 1 part b)
 
-URL: /api/v1/customers
-Method: GET
-Query Parameters: firstName, city, state
+URL: `/api/v1/customers`
+Method: `GET`
+Query Parameters: `firstName, city, state`
 Response:
-json
-Copy code
+`
 [
     {
         "firstName": "John",
@@ -93,14 +94,14 @@ Copy code
             "zipCode": "12345"
         }]
     }
-]
+]`
 
 # Compare Customer Lists (problem 2)
 
 URL: /api/v1/customers/compare
 Method: POST
 Request Body:
-{
+`{
     "listA": [
         {
             "firstName": "John",
@@ -141,10 +142,10 @@ Request Body:
             "address": []
         }
     ]
-}
+}`
 
 Response:
-{
+`{
     "onlyInA": [
         {
             "firstName": "John",
@@ -178,4 +179,4 @@ Response:
             "address": []
         }
     ]
-}
+}`
